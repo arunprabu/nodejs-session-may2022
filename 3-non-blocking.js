@@ -6,7 +6,7 @@ const fs = require('fs');
 console.log('Program Started');
 
 // reading file asynchronously - non-blocking I/O 
-fs.readFile('./sample.txt', function(err, data){
+fs.readFile('./sample.txt', function(err, data){ // error first callback
   if(!err){
     console.log(data.toString()); // will be printed after Program Ended
   }else{

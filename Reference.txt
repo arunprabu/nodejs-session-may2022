@@ -1,0 +1,20 @@
+Isomorphic JS 
+---
+
+Front End Apps 
+  JS
+
+Back End 
+  Java, DotNet, PHP, Python, Ruby, NodeJS (JS)
+
+Desktop Apps 
+  Java, DotNet, Python, Electron JS (JS)
+
+Mobile Apps 
+  Java (Android), DotNet - Xamarine (iOS, Android), Ionic and React Native (JS - iOS, Android) 
+
+Database 
+  MongoDB (JS)
+
+----
+
