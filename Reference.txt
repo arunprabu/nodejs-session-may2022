@@ -18,3 +18,68 @@ Database
 
 ----
 
+
+Node Package Manager 
+---
+  Dependencies
+---
+  1. Project Dependencies
+      * some pkgs are needed only for the app's feature/functionality to work
+      * will be part of deployable codebase 
+
+      examples: dropzone, datatables, express, mongodb, bootstrap, jquery 
+
+      npm i express (or)
+      npm install express (or)
+      npm i express --save (or)
+      npm i express -S (or)
+
+      "dependencies": {
+        "express": "^4.18.1"
+      }
+      
+  2. Dev Dependencies
+      * some pkgs are needed just for the development
+      * will never be part of the deployable codebase 
+      * to have better, smoother dev workflow 
+
+      examples: typescript, nodemon, webpack, grunt, gulp, jest, mocha, chai, jasmine 
+
+      npm i typescript --save-dev  (or)
+      npm i typescript -D 
+
+      "devDependencies": {
+        "typescript": "^4.6.4"
+      }
+
+  3. Global Dependencies
+      * will be installed as a system wide package 
+
+      npm i nodemon -g 
+
+
+Other commands of npm
+---
+  npm update express 
+  npm update typescript -D 
+
+  npm uninstall express
+  npm uninstall typescript -D 
+
+  TODO: npm prune 
+  TODO: Learn about various ways to keep version in package.json file
+  TODO: where will the global package be installed in windows? 
+
+
+-----
+
+ExpressJS 
+
+MongoDB 
+
+My-SQL 
+
+Authentication 
+
+Unit Testing
+

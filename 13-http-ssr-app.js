@@ -36,7 +36,8 @@ http.createServer( (req, res) => {
       res.end(getTemplate('Contact'));
       break;
 
-    case '/users':
+    case '/users': // REST API Endpoint
+    // res header 
       res.setHeader('Content-Type', 'application/json');
       res.end(`[{
         id: 1,
