@@ -3,11 +3,18 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser'); // Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
 var logger = require('morgan'); // logger middlware
+const db = require("./models/mysql");
+//db.sequelize.sync(); // this one you can try in prod..but in dev try the following
+// In development, you may need to drop existing tables and re-sync database. 
+// Just use force: true as following code:
+db.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and re-sync db.");
+});
 
  // custom imports
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var employeesRouter = require('./routes/api/employees');
+var usersRouter = require('./routes/api/users');
 
 var app = express(); //Creates an Express application. 
 // The express() function is a top-level function exported by the express module.
@@ -25,9 +32,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // handling base routes 
 app.use('/', indexRouter); 
-app.use('/users', usersRouter);
 // Setting up REST API Endpoints
 app.use('/api/employees', employeesRouter);
+app.use('/api/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,94 @@
+Databases
+---
+
+  Database Server 
+    URL: localhost / ip address 
+    PORT: 2453453
+    credentials: {
+      username: root,
+      password: password
+    }
+
+  Database Client 
+    * needs to know url, port, creds 
+    * exec query
+    * CRUD 
+    Clients:
+      * GUI Clients: HeidiSQL, SQLYog, Studio 3T for MongoDB
+      * Shell Clients/ Command Prompts
+      * Programming Client Tools 
+
+
+  Types of DB's 
+  ---
+    1. RDBMS 
+        Examples: Oracle, MySQL, MariaDB, MS-SQLServer, PostgreSQL 
+        * Data would be stored in 
+          db => tables => (columns, rows)
+        * data will be stored in columns and rows
+        * tables can have relationships 
+        * write SQL query
+
+    2. NoSQL 
+        Examples: MongoDB
+        * not only SQL 
+        * data will not be stored in tables 
+        * data will be stored in collections 
+        * data will be stored as object (JSON)
+
+1. MongoDB 
+    Installation Path: 
+      C:/Program Files/MongoDB/Server/4.4/bin/
+
+    MongoDB 
+    ---
+      start the server from cmd prompt 
+        C:ProgramFiles/MongoDB/server/4.4>bin> mongod 
+      
+      in another cmd prompt- to launch shell client 
+        C:ProgramFiles/MongoDB/server/4.4>bin> mongo
+      
+      to see all dbs 
+        show dbs 
+      
+      to see the selected db 
+        db 
+      
+      to create a db 
+        use <db-name>
+
+      to drop db 
+        db.dropDatabase()
+
+      to create collection 
+        db.createCollection('<collection-name>')
+
+      to see all collections inside this db 
+        show collections
+
+      insert a document inside collection
+        db.employees.insert({ name: 'Steve', phone: 547456, email: 's@t.com'})
+
+      to fetch all documents from collection 
+        db.employees.find();
+
+      to fetch one employee by phone from collection 
+        db.employees.findOne({phone: 547456});
+
+      to update a document 
+        db.employees.update({phone: 547456}, { $set: { zip: 54345, address: 'wallstreet' } })
+
+      to remove 
+        db.employees.remove({exp: 20})
+
+
+
+
+      
+
+
+      
+
+
+2. MySQL  
+
