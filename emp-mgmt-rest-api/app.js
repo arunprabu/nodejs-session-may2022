@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser'); // Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
 var logger = require('morgan'); // logger middlware
+const { body, validationResult } = require('express-validator');
+
 const db = require("./models/mysql");
 //db.sequelize.sync(); // this one you can try in prod..but in dev try the following
 // In development, you may need to drop existing tables and re-sync database. 
@@ -35,6 +37,49 @@ app.use('/', indexRouter);
 // Setting up REST API Endpoints
 app.use('/api/employees', employeesRouter);
 app.use('/api/users', usersRouter);
+
+app.post( '/api/contacts',
+  // email must be an email
+  body('email').isEmail(),
+  // city must be at least 5 chars long
+  body('city').isLength({ min: 5 }),
+  (req, res) => {
+    // Finds the validation errors in this request and wraps them in an object with handy functions
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    
+    //then update the db
+    // Contact.create({
+    //   email: req.body.email,
+    //   city: req.body.city,
+    // }).then(user => res.json(user));
+  },
+);
+
+app.post(
+  '/api/random',
+  body('password').isLength({ min: 5 }),
+  body('passwordConfirmation').custom((value, { req }) => {
+    if (value !== req.body.password) {
+      throw new Error('Password confirmation does not match password');
+    }
+
+    // Indicates the success of this synchronous custom validator
+    return true;
+  }),
+  (req, res) => {
+    // Handle the request
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    res.send('valid');
+  },
+);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

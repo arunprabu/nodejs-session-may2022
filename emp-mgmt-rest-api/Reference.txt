@@ -16,7 +16,7 @@ Databases
     Clients:
       * GUI Clients: HeidiSQL, SQLYog, Studio 3T for MongoDB
       * Shell Clients/ Command Prompts
-      * Programming Client Tools 
+      * Programming Client Tools (Driver: mongoose )
 
 
   Types of DB's 
@@ -80,6 +80,8 @@ Databases
 
       to remove 
         db.employees.remove({exp: 20})
+
+---
 
 
 
