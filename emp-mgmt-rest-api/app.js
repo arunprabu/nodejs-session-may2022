@@ -38,32 +38,25 @@ app.use('/', indexRouter);
 app.use('/api/employees', employeesRouter);
 app.use('/api/users', usersRouter);
 
-app.post( '/api/contacts',
-  // email must be an email
+app.post('/api/contacts', 
+  body('name').isLength({min: 2}),
   body('email').isEmail(),
-  // city must be at least 5 chars long
-  body('city').isLength({ min: 5 }),
   (req, res) => {
-    // Finds the validation errors in this request and wraps them in an object with handy functions
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    
-    //then update the db
-    // Contact.create({
-    //   email: req.body.email,
-    //   city: req.body.city,
-    // }).then(user => res.json(user));
-  },
-);
+  // Finds the validation errors in this request and wraps them in an object with handy functions
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  // ideal place to connect with db and exec query 
+  res.send('success');
+});
 
 app.post(
   '/api/random',
   body('password').isLength({ min: 5 }),
   body('passwordConfirmation').custom((value, { req }) => {
     if (value !== req.body.password) {
-      throw new Error('Password confirmation does not match password');
+      throw new Error('Passwords do not match');
     }
 
     // Indicates the success of this synchronous custom validator

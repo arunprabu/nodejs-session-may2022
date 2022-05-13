@@ -7,7 +7,10 @@ var router = express.Router();
 router.get('/', getEmployees);
 
 /* POST - create employee */
-router.post('/', body('email').isEmail(), body('phone').isLength({ min: 10 }),  createEmployee);
+router.post('/', 
+  body('email').isEmail(), 
+  body('phone').isLength({ min: 10 }),  
+  createEmployee);
 
 /* GET - to fetch employee details */
 /* Let's handle URL Param - id is the URL param*/
