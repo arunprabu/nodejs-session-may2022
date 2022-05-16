@@ -4,6 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser'); // Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
 var logger = require('morgan'); // logger middlware
 const { body, validationResult } = require('express-validator');
+const passport = require('passport');
+const session = require('express-session');
+const cors = require('cors');
 
 const db = require("./models/mysql");
 //db.sequelize.sync(); // this one you can try in prod..but in dev try the following
@@ -17,6 +20,12 @@ db.sequelize.sync({ force: true }).then(() => {
 var indexRouter = require('./routes/index');
 var employeesRouter = require('./routes/api/employees');
 var usersRouter = require('./routes/api/users');
+var authRouter = require('./routes/api/auth');
+
+// connecting the model here directly
+require('./models/account');
+// connecting passport config
+require('./config/passportConfig');
 
 var app = express(); //Creates an Express application. 
 // The express() function is a top-level function exported by the express module.
@@ -32,11 +41,27 @@ app.use(cookieParser());
 // static assets are set up
 app.use(express.static(path.join(__dirname, 'public')));
 
+// setting up auth middleware 
+app.use(passport.initialize())
+//app.use(passport.session());
+
+// app.use(session({
+//   secret: 'NodeJS is wonderful',
+//   saveUninitialized: false,
+//   resave: false,
+//   cookie: { secure: true }
+// }));
+
+// setting up cors
+// so that the following urls will honour any req from any domain and port number
+app.use(cors()) 
+
 // handling base routes 
 app.use('/', indexRouter); 
 // Setting up REST API Endpoints
 app.use('/api/employees', employeesRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/auth', authRouter);
 
 app.post('/api/contacts', 
   body('name').isLength({min: 2}),
@@ -72,6 +97,7 @@ app.post(
     res.send('valid');
   },
 );
+
 
 
 // catch 404 and forward to error handler

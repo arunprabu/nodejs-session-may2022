@@ -1,10 +1,13 @@
 var express = require('express');
 const { body } = require('express-validator');
+const authUtil = require('../../utils/authUtil');
+
 const { getEmployees, createEmployee, getEmployeeById, updateEmployee } = require('../../controllers/employees.controller');
 var router = express.Router();
 
 /* GET employees listing. */
-router.get('/', getEmployees);
+/* attaching auth middleware */
+router.get('/', authUtil.required, getEmployees);
 
 /* POST - create employee */
 router.post('/', 

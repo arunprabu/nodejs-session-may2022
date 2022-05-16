@@ -82,15 +82,56 @@ Databases
         db.employees.remove({exp: 20})
 
 ---
-
-
-
-
-      
-
-
-      
-
-
+  
 2. MySQL  
+      Refer the project 
+
+====
+
+Authenthication
+---
+  HTTP
+  --
+    * stateless 
+    * half-duplex 
+    client => server 
+    client <= server 
+    
+  Websocket 
+  --
+    * full-duplex 
+    * client <=> server
+
+
+  1. Session Based 
+      email, password 
+        1. if valid 
+            session id would be created and saved in server
+              session id would be sent to the brower 
+                browser should store the session id in cookies 
+                  (post-login pages will be accessible thereafter - provided the session id is sent thru req header)
+
+        2. else
+            login again 
+
+
+  2. Token Based Auth
+        email, password 
+          1. if valid 
+              token (JWT) would be generated 
+                token would be sent to the brower 
+                  browser should store the session id in cookies/local storage /session storage
+                    (post-login pages will be accessible thereafter -- provided the token is sent thru req header)
+
+          2. else
+            login again 
+
+
+  localhost:3000/api/auth/signup - POST
+  localhost:3000/api/auth/login - POST
+
+  
+
+
+=====
 

@@ -1,0 +1,9 @@
+Automated Testing 
+--
+  1. Unit Testing 
+      * testing small unit of a file 
+      Tools: Mocha + Chai 
+      
+  2. Integration Testing 
+  3. E2E Testing 
+

@@ -45,7 +45,9 @@ exports.getEmployeeById = (req, res) => {
   Employee.findOne({_id: req.params.id}, (err, data) => {
     if(!err){
       console.log(data);
-      res.send(data);
+      // res.clearCookie('zip');  // to clear cookies
+      // creating cookie
+      res.cookie('zip', '600001', {maxAge: 360000}).send(data);
     }else{
       console.log(err);
       res.send(err);
