@@ -1,9 +1,36 @@
+
+
+calc
+--
+  function add(a, b){
+    if(typeof a == number && typeof b == number ){
+       return a + b;
+    }else{
+      return 'invalid input'
+    }
+   
+  }
+  add("%", "^^^^^");  
+---
+
+Test cases
+--
+  1. input should be number (bug)
+  2. o/p should also be num 
+  3. add btn should be disabled if invalid entered 
+
+dev (write the test case) => dev => (Tools) => SUCCESS / FAILURE
+
+
 Automated Testing 
 --
   1. Unit Testing 
       * testing small unit of a file 
-      Tools: Mocha + Chai 
+      Tools: Mocha + Chai, JEST , sinon js 
       
   2. Integration Testing 
+      Tools: Mocha + Chai, sinon js 
+  
   3. E2E Testing 
+      Tools: Puppeteer, CypressJS  
 
